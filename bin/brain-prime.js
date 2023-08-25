@@ -13,23 +13,27 @@ const playerName = readlineSync.question('May I have your name? ');
 console.log(`Hello, ${playerName}!`);
 console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
 
-for (let index = 0; index < targetAmountCorrectAnswers; index++) {
-    randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
+for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
+  randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
 
-    primeNumbers.includes(randomNumber) ? correctAnswer = 'yes' : correctAnswer = 'no';
-    
-    console.log(`Question: ${randomNumber}`);
-    playerAnswer = readlineSync.question('Your answer: ');
+  if (primeNumbers.includes(randomNumber)) {
+    correctAnswer = 'yes';
+  } else {
+    correctAnswer = 'no';
+  }
 
-    if (playerAnswer === correctAnswer) {
-        console.log('Correct!');
-        userAmountCorrectAnswers += 1;
-    } else {
-        console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`)
-        break;
-    }
+  console.log(`Question: ${randomNumber}`);
+  playerAnswer = readlineSync.question('Your answer: ');
+
+  if (playerAnswer === correctAnswer) {
+    console.log('Correct!');
+    userAmountCorrectAnswers += 1;
+  } else {
+    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`);
+    break;
+  }
 }
 
 if (userAmountCorrectAnswers === targetAmountCorrectAnswers) {
-    console.log(`Congratulations, ${playerName}!`)
+  console.log(`Congratulations, ${playerName}!`);
 }

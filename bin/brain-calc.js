@@ -16,38 +16,42 @@ const playerName = readlineSync.question('May I have your name? ');
 console.log(`Hello, ${playerName}!`);
 console.log('What is the result of the expression?');
 
-for (let index = 0; index < targetAmountCorrectAnswers; index++) {
-    randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
-    randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
-    randomNumberOperator = Math.floor(Math.random() * amountOperators + 1);
+for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
+  randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
+  randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
+  randomNumberOperator = Math.floor(Math.random() * amountOperators + 1);
 
-    switch(randomNumberOperator) {
-        case 1:
-            symbolOperator = '+';
-            correctAnswer = randomNumber1 + randomNumber2;
-            break;
-        case 2:
-            symbolOperator = '-';
-            correctAnswer = randomNumber1 - randomNumber2;
-            break;
-        case 3:
-            symbolOperator = '*';
-            correctAnswer = randomNumber1 * randomNumber2;
-            break;    
-    }
+  switch (randomNumberOperator) {
+    case 1:
+      symbolOperator = '+';
+      correctAnswer = randomNumber1 + randomNumber2;
+      break;
+    case 2:
+      symbolOperator = '-';
+      correctAnswer = randomNumber1 - randomNumber2;
+      break;
+    case 3:
+      symbolOperator = '*';
+      correctAnswer = randomNumber1 * randomNumber2;
+      break;
+    default:
+      symbolOperator = '+';
+      correctAnswer = randomNumber1 + randomNumber2;
+      break;
+  }
 
-    console.log(`Question: ${randomNumber1} ${symbolOperator} ${randomNumber2}`);
-    playerAnswer = Number(readlineSync.question('Your answer: '));
+  console.log(`Question: ${randomNumber1} ${symbolOperator} ${randomNumber2}`);
+  playerAnswer = Number(readlineSync.question('Your answer: '));
 
-    if (playerAnswer === correctAnswer) {
-        console.log('Correct!');
-        userAmountCorrectAnswers += 1;
-    } else {
-        console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`)
-        break;
-    }
+  if (playerAnswer === correctAnswer) {
+    console.log('Correct!');
+    userAmountCorrectAnswers += 1;
+  } else {
+    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`);
+    break;
+  }
 }
 
 if (userAmountCorrectAnswers === targetAmountCorrectAnswers) {
-    console.log(`Congratulations, ${playerName}!`)
+  console.log(`Congratulations, ${playerName}!`);
 }

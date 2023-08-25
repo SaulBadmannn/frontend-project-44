@@ -16,37 +16,42 @@ const playerName = readlineSync.question('May I have your name? ');
 console.log(`Hello, ${playerName}!`);
 console.log('Find the greatest common divisor of given numbers.');
 
-for (let index = 0; index < targetAmountCorrectAnswers; index++) {
-    randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
-    randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
+for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
+  randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
+  randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
 
-    randomNumber1 > randomNumber2 ? lessRandomNumber = randomNumber2 : lessRandomNumber = randomNumber1;
-    currentDivisor = lessRandomNumber;
-    greatestCommonDivisor = 1;
+  if (randomNumber1 > randomNumber2) {
+    lessRandomNumber = randomNumber2;
+  } else {
+    lessRandomNumber = randomNumber1;
+  }
 
-    for (let j = 0; j < lessRandomNumber; j++) {
-        if (randomNumber1 %  currentDivisor === 0 && randomNumber2 %  currentDivisor === 0) {
-            greatestCommonDivisor = currentDivisor;
-            break;
-        }
+  currentDivisor = lessRandomNumber;
+  greatestCommonDivisor = 1;
 
-        currentDivisor -= 1;
+  for (let j = 0; j < lessRandomNumber; j += 1) {
+    if (randomNumber1 % currentDivisor === 0 && randomNumber2 % currentDivisor === 0) {
+      greatestCommonDivisor = currentDivisor;
+      break;
     }
 
-    correctAnswer = greatestCommonDivisor;
+    currentDivisor -= 1;
+  }
 
-    console.log(`Question: ${randomNumber1} ${randomNumber2}`);
-    playerAnswer = Number(readlineSync.question('Your answer: '));
+  correctAnswer = greatestCommonDivisor;
 
-    if (playerAnswer === correctAnswer) {
-        console.log('Correct!');
-        userAmountCorrectAnswers += 1;
-    } else {
-        console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`)
-        break;
-    }
+  console.log(`Question: ${randomNumber1} ${randomNumber2}`);
+  playerAnswer = Number(readlineSync.question('Your answer: '));
+
+  if (playerAnswer === correctAnswer) {
+    console.log('Correct!');
+    userAmountCorrectAnswers += 1;
+  } else {
+    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`);
+    break;
+  }
 }
 
 if (userAmountCorrectAnswers === targetAmountCorrectAnswers) {
-    console.log(`Congratulations, ${playerName}!`)
+  console.log(`Congratulations, ${playerName}!`);
 }

@@ -12,23 +12,27 @@ const playerName = readlineSync.question('May I have your name? ');
 console.log(`Hello, ${playerName}!`);
 console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-for (let index = 0; index < targetAmountCorrectAnswers; index++) {
-    randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
+for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
+  randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
 
-    randomNumber % 2 === 0 ? correctAnswer = 'yes' : correctAnswer = 'no';
-    
-    console.log(`Question: ${randomNumber}`);
-    playerAnswer = readlineSync.question('Your answer: ');
+  if (randomNumber % 2 === 0) {
+    correctAnswer = 'yes';
+  } else {
+    correctAnswer = 'no';
+  }
 
-    if (playerAnswer === correctAnswer) {
-        console.log('Correct!');
-        userAmountCorrectAnswers += 1;
-    } else {
-        console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`)
-        break;
-    }
+  console.log(`Question: ${randomNumber}`);
+  playerAnswer = readlineSync.question('Your answer: ');
+
+  if (playerAnswer === correctAnswer) {
+    console.log('Correct!');
+    userAmountCorrectAnswers += 1;
+  } else {
+    console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`);
+    break;
+  }
 }
 
 if (userAmountCorrectAnswers === targetAmountCorrectAnswers) {
-    console.log(`Congratulations, ${playerName}!`)
+  console.log(`Congratulations, ${playerName}!`);
 }
