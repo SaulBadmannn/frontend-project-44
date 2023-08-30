@@ -1,30 +1,28 @@
-import * as gameEngine from './game-engine.js';
+import * as gameEngine from '../game-engine.js';
 
-const LaunchBrainPrimeGame = () => {
+const LaunchBrainEvenGame = () => {
   const targetAmountCorrectAnswers = 3;
   let userAmountCorrectAnswers = 0;
   let randomNumber = 0;
-  const maxRandomNumber = 20;
-  const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19];
+  const maxRandomNumber = 100;
   let correctAnswer;
   let playerAnswer;
   let question;
 
   gameEngine.greetingPlayer();
   const playerName = gameEngine.getPlayerName();
-
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
   for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
     randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
+    question = randomNumber;
 
-    if (primeNumbers.includes(randomNumber)) {
+    if (randomNumber % 2 === 0) {
       correctAnswer = 'yes';
     } else {
       correctAnswer = 'no';
     }
 
-    question = `${randomNumber}`;
     gameEngine.askQuestion(question);
     playerAnswer = gameEngine.getPlayerAnswer();
 
@@ -38,4 +36,4 @@ const LaunchBrainPrimeGame = () => {
   gameEngine.CheckCorrectAnswers(targetAmountCorrectAnswers, userAmountCorrectAnswers, playerName);
 };
 
-export default LaunchBrainPrimeGame;
+export default LaunchBrainEvenGame;

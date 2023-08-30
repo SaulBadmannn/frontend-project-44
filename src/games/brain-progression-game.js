@@ -1,4 +1,4 @@
-import * as gameEngine from './game-engine.js';
+import * as gameEngine from '../game-engine.js';
 
 const LaunchBrainProgressionGame = () => {
   const targetAmountCorrectAnswers = 3;
