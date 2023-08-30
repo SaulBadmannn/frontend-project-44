@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import greetingPlayer from '../src/cli.js';
+import LaunchBrainEvenGame from '../src/brain-even-game.js';
 
-greetingPlayer();
+LaunchBrainEvenGame();

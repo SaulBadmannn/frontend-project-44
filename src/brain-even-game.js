@@ -11,6 +11,7 @@ const LaunchBrainEvenGame = () => {
 
   gameEngine.greetingPlayer();
   const playerName = gameEngine.getPlayerName();
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
   for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
     randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
