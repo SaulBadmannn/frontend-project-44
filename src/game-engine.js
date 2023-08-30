@@ -22,8 +22,9 @@ export const getPlayerAnswer = () => {
 
 export const isPlayerAnswerCorrect = (playerAnswer, correctAnswer, playerName) => {
   let isAnswerCorrect;
+  const convertCorrectAnswer = String(correctAnswer);
 
-  if (playerAnswer === correctAnswer) {
+  if (playerAnswer === convertCorrectAnswer) {
     console.log('Correct!');
     isAnswerCorrect = true;
   } else {
