@@ -1,58 +1,42 @@
-import * as gameEngine from '../game-engine.js';
+import launchGame from '../game-engine.js';
 
-const LaunchBrainGcdGame = () => {
-  const targetAmountCorrectAnswers = 3;
-  let userAmountCorrectAnswers = 0;
+const generateRound = () => {
   let randomNumber1 = 0;
   let randomNumber2 = 0;
   const maxRandomNumber = 20;
-  let correctAnswer;
-  let playerAnswer;
   let lessRandomNumber;
   let currentDivisor;
   let greatestCommonDivisor;
-  let question;
 
-  gameEngine.greetingPlayer();
-  const playerName = gameEngine.getPlayerName();
+  randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
+  randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
 
-  console.log('Find the greatest common divisor of given numbers.');
-
-  for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
-    randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
-    randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
-
-    if (randomNumber1 > randomNumber2) {
-      lessRandomNumber = randomNumber2;
-    } else {
-      lessRandomNumber = randomNumber1;
-    }
-
-    currentDivisor = lessRandomNumber;
-    greatestCommonDivisor = 1;
-
-    for (let j = 0; j < lessRandomNumber; j += 1) {
-      if (randomNumber1 % currentDivisor === 0 && randomNumber2 % currentDivisor === 0) {
-        greatestCommonDivisor = currentDivisor;
-        break;
-      }
-
-      currentDivisor -= 1;
-    }
-
-    correctAnswer = greatestCommonDivisor;
-    question = `${randomNumber1} ${randomNumber2}`;
-    gameEngine.askQuestion(question);
-    playerAnswer = gameEngine.getPlayerAnswer();
-
-    if (gameEngine.isPlayerAnswerCorrect(playerAnswer, correctAnswer, playerName)) {
-      userAmountCorrectAnswers += 1;
-    } else {
-      break;
-    }
+  if (randomNumber1 > randomNumber2) {
+    lessRandomNumber = randomNumber2;
+  } else {
+    lessRandomNumber = randomNumber1;
   }
 
-  gameEngine.CheckCorrectAnswers(targetAmountCorrectAnswers, userAmountCorrectAnswers, playerName);
+  currentDivisor = lessRandomNumber;
+  greatestCommonDivisor = 1;
+
+  for (let j = 0; j < lessRandomNumber; j += 1) {
+    if (randomNumber1 % currentDivisor === 0 && randomNumber2 % currentDivisor === 0) {
+      greatestCommonDivisor = currentDivisor;
+      break;
+    }
+
+    currentDivisor -= 1;
+  }
+
+  const answer = String(greatestCommonDivisor);
+  const question = `${randomNumber1} ${randomNumber2}`;
+
+  return [question, answer];
 };
 
-export default LaunchBrainGcdGame;
+const description = 'Find the greatest common divisor of given numbers.';
+
+const launchBrainGcdGame = launchGame(generateRound, description);
+
+export default launchBrainGcdGame;

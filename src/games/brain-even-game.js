@@ -1,39 +1,24 @@
-import * as gameEngine from '../game-engine.js';
+import launchGame from '../game-engine.js';
 
-const LaunchBrainEvenGame = () => {
-  const targetAmountCorrectAnswers = 3;
-  let userAmountCorrectAnswers = 0;
+const generateRound = () => {
   let randomNumber = 0;
   const maxRandomNumber = 100;
-  let correctAnswer;
-  let playerAnswer;
-  let question;
+  let answer;
 
-  gameEngine.greetingPlayer();
-  const playerName = gameEngine.getPlayerName();
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
+  const question = randomNumber;
 
-  for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
-    randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
-    question = randomNumber;
-
-    if (randomNumber % 2 === 0) {
-      correctAnswer = 'yes';
-    } else {
-      correctAnswer = 'no';
-    }
-
-    gameEngine.askQuestion(question);
-    playerAnswer = gameEngine.getPlayerAnswer();
-
-    if (gameEngine.isPlayerAnswerCorrect(playerAnswer, correctAnswer, playerName)) {
-      userAmountCorrectAnswers += 1;
-    } else {
-      break;
-    }
+  if (randomNumber % 2 === 0) {
+    answer = 'yes';
+  } else {
+    answer = 'no';
   }
 
-  gameEngine.CheckCorrectAnswers(targetAmountCorrectAnswers, userAmountCorrectAnswers, playerName);
+  return [question, answer];
 };
 
-export default LaunchBrainEvenGame;
+const description = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+export const launchBrainEvenGame = launchGame(generateRound, description);
+
+export default launchBrainEvenGame;

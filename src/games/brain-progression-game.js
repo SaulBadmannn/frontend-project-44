@@ -1,52 +1,35 @@
-import * as gameEngine from '../game-engine.js';
+import launchGame from '../game-engine.js';
 
-const LaunchBrainProgressionGame = () => {
-  const targetAmountCorrectAnswers = 3;
-  let userAmountCorrectAnswers = 0;
+const generateRound = () => {
   const maxRandomNumber = 5;
   const amountNumbersProgression = 10;
-  let stepProgression;
-  let correctAnswer;
-  let playerAnswer;
-  let indexHiddenNumber;
   let outputProgression = '';
   let currentNumberProgression;
-  let question;
+  let answer;
 
-  gameEngine.greetingPlayer();
-  const playerName = gameEngine.getPlayerName();
+  const stepProgression = Math.floor(Math.random() * maxRandomNumber + 1);
+  const indexHiddenNumber = Math.floor(Math.random() * amountNumbersProgression);
+  currentNumberProgression = Math.floor(Math.random() * maxRandomNumber + 1);
+  outputProgression = '';
 
-  console.log('What number is missing in the progression?');
-
-  for (let index = 0; index < targetAmountCorrectAnswers; index += 1) {
-    stepProgression = Math.floor(Math.random() * maxRandomNumber + 1);
-    indexHiddenNumber = Math.floor(Math.random() * amountNumbersProgression);
-    currentNumberProgression = Math.floor(Math.random() * maxRandomNumber + 1);
-    outputProgression = '';
-
-    for (let j = 0; j < amountNumbersProgression; j += 1) {
-      if (indexHiddenNumber === j) {
-        outputProgression += '.. ';
-        correctAnswer = currentNumberProgression;
-      } else {
-        outputProgression += `${currentNumberProgression} `;
-      }
-
-      currentNumberProgression += stepProgression;
-    }
-
-    question = `${outputProgression}`;
-    gameEngine.askQuestion(question);
-    playerAnswer = gameEngine.getPlayerAnswer();
-
-    if (gameEngine.isPlayerAnswerCorrect(playerAnswer, correctAnswer, playerName)) {
-      userAmountCorrectAnswers += 1;
+  for (let j = 0; j < amountNumbersProgression; j += 1) {
+    if (indexHiddenNumber === j) {
+      outputProgression += '.. ';
+      answer = String(currentNumberProgression);
     } else {
-      break;
+      outputProgression += `${currentNumberProgression} `;
     }
+
+    currentNumberProgression += stepProgression;
   }
 
-  gameEngine.CheckCorrectAnswers(targetAmountCorrectAnswers, userAmountCorrectAnswers, playerName);
+  const question = `${outputProgression}`;
+
+  return [question, answer];
 };
 
-export default LaunchBrainProgressionGame;
+const description = 'What number is missing in the progression?';
+
+export const launchBrainProgressionGame = launchGame(generateRound, description);
+
+export default launchBrainProgressionGame;
