@@ -16,16 +16,14 @@ const getAnswer = (number1, number2, symbolOperator) => {
 const generateRound = () => {
   const maxRandomNumber = 10;
   const symbolsOperator = ['+', '-', '*'];
-  let answer;
 
   const randomNumber1 = getRandomNumber(maxRandomNumber);
   const randomNumber2 = getRandomNumber(maxRandomNumber);
 
   const randomOperator = symbolsOperator[getRandomNumber(symbolsOperator.length, 0)];
-  answer = getAnswer(randomNumber1, randomNumber2, randomOperator);
 
   const question = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
-  answer = String(answer);
+  const answer = String(getAnswer(randomNumber1, randomNumber2, randomOperator));
 
   return [question, answer];
 };

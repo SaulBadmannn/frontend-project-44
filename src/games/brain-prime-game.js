@@ -1,20 +1,22 @@
 import launchGame, { getRandomNumber } from '../game-engine.js';
 
-const generateRound = () => {
-  let randomNumber = 0;
-  const maxRandomNumber = 20;
+const getAnswer = (number) => {
   const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19];
-  let answer;
 
-  randomNumber = getRandomNumber(maxRandomNumber);
-
-  const question = randomNumber;
-
-  if (primeNumbers.includes(randomNumber)) {
-    answer = 'yes';
-  } else {
-    answer = 'no';
+  if (primeNumbers.includes(number)) {
+    return 'yes';
   }
+
+  return 'no';
+};
+
+const generateRound = () => {
+  const maxRandomNumber = 20;
+
+  const randomNumber = getRandomNumber(maxRandomNumber);
+
+  const answer = getAnswer(randomNumber);
+  const question = randomNumber;
 
   return [question, answer];
 };

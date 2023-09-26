@@ -9,10 +9,9 @@ const getAnswer = (number) => {
 };
 
 const generateRound = () => {
-  let randomNumber = 0;
   const maxRandomNumber = 100;
 
-  randomNumber = getRandomNumber(maxRandomNumber);
+  const randomNumber = getRandomNumber(maxRandomNumber);
   const question = randomNumber;
 
   const answer = getAnswer(randomNumber);
