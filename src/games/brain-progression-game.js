@@ -8,7 +8,7 @@ const generateRound = () => {
   let answer;
 
   const stepProgression = getRandomNumber(maxRandomNumber);
-  const indexHiddenNumber = getRandomNumber(amountNumbersProgression);
+  const indexHiddenNumber = getRandomNumber(amountNumbersProgression, 0);
   currentNumberProgression = getRandomNumber(maxRandomNumber);
   outputProgression = '';
 
