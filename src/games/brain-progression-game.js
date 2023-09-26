@@ -4,13 +4,11 @@ const generateRound = () => {
   const maxRandomNumber = 5;
   const amountNumbersProgression = 10;
   let outputProgression = '';
-  let currentNumberProgression;
   let answer;
 
   const stepProgression = getRandomNumber(maxRandomNumber);
   const indexHiddenNumber = getRandomNumber(amountNumbersProgression, 0);
-  currentNumberProgression = getRandomNumber(maxRandomNumber);
-  outputProgression = '';
+  let currentNumberProgression = getRandomNumber(maxRandomNumber);
 
   for (let j = 0; j < amountNumbersProgression; j += 1) {
     if (indexHiddenNumber === j) {
