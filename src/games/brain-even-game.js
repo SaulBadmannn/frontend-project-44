@@ -1,18 +1,21 @@
-import launchGame from '../game-engine.js';
+import launchGame, { getRandomNumber } from '../game-engine.js';
+
+const getAnswer = (number) => {
+  if (number % 2 === 0) {
+    return 'yes';
+  }
+
+  return 'no';
+};
 
 const generateRound = () => {
   let randomNumber = 0;
   const maxRandomNumber = 100;
-  let answer;
 
-  randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
+  randomNumber = getRandomNumber(maxRandomNumber);
   const question = randomNumber;
 
-  if (randomNumber % 2 === 0) {
-    answer = 'yes';
-  } else {
-    answer = 'no';
-  }
+  const answer = getAnswer(randomNumber);
 
   return [question, answer];
 };

@@ -26,4 +26,9 @@ const launchGame = (generateRound, description) => () => {
   console.log(`Congratulations, ${playerName}!`);
 };
 
+export const getRandomNumber = (maxRandomNumber, minRandomNumber = 1) => {
+  const randomFloatNumber = Math.random() * maxRandomNumber + minRandomNumber;
+  return Math.floor(randomFloatNumber);
+};
+
 export default launchGame;

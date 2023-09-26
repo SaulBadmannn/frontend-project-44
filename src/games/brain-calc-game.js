@@ -1,37 +1,30 @@
-import launchGame from '../game-engine.js';
+import launchGame, { getRandomNumber } from '../game-engine.js';
+
+const getAnswer = (number1, number2, symbolOperator) => {
+  switch (symbolOperator) {
+    case '+':
+      return number1 + number2;
+    case '-':
+      return number1 - number2;
+    case '*':
+      return number1 * number2;
+    default:
+      return number1 + number2;
+  }
+};
 
 const generateRound = () => {
-  let randomNumber1 = 0;
-  let randomNumber2 = 0;
   const maxRandomNumber = 10;
-  const amountOperators = 3;
-  let symbolOperator;
+  const symbolsOperator = ['+', '-', '*'];
   let answer;
 
-  randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
-  randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
-  const randomNumberOperator = Math.floor(Math.random() * amountOperators + 1);
+  const randomNumber1 = getRandomNumber(maxRandomNumber);
+  const randomNumber2 = getRandomNumber(maxRandomNumber);
 
-  switch (randomNumberOperator) {
-    case 1:
-      symbolOperator = '+';
-      answer = randomNumber1 + randomNumber2;
-      break;
-    case 2:
-      symbolOperator = '-';
-      answer = randomNumber1 - randomNumber2;
-      break;
-    case 3:
-      symbolOperator = '*';
-      answer = randomNumber1 * randomNumber2;
-      break;
-    default:
-      symbolOperator = '+';
-      answer = randomNumber1 + randomNumber2;
-      break;
-  }
+  const randomOperator = symbolsOperator[getRandomNumber(symbolsOperator.length, 0)];
+  answer = getAnswer(randomNumber1, randomNumber2, randomOperator);
 
-  const question = `${randomNumber1} ${symbolOperator} ${randomNumber2}`;
+  const question = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
   answer = String(answer);
 
   return [question, answer];

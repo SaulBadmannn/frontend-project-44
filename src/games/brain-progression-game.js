@@ -1,4 +1,4 @@
-import launchGame from '../game-engine.js';
+import launchGame, { getRandomNumber } from '../game-engine.js';
 
 const generateRound = () => {
   const maxRandomNumber = 5;
@@ -7,9 +7,9 @@ const generateRound = () => {
   let currentNumberProgression;
   let answer;
 
-  const stepProgression = Math.floor(Math.random() * maxRandomNumber + 1);
-  const indexHiddenNumber = Math.floor(Math.random() * amountNumbersProgression);
-  currentNumberProgression = Math.floor(Math.random() * maxRandomNumber + 1);
+  const stepProgression = getRandomNumber(maxRandomNumber);
+  const indexHiddenNumber = getRandomNumber(amountNumbersProgression);
+  currentNumberProgression = getRandomNumber(maxRandomNumber);
   outputProgression = '';
 
   for (let j = 0; j < amountNumbersProgression; j += 1) {

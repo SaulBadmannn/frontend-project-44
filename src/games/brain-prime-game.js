@@ -1,4 +1,4 @@
-import launchGame from '../game-engine.js';
+import launchGame, { getRandomNumber } from '../game-engine.js';
 
 const generateRound = () => {
   let randomNumber = 0;
@@ -6,7 +6,7 @@ const generateRound = () => {
   const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19];
   let answer;
 
-  randomNumber = Math.floor(Math.random() * maxRandomNumber + 1);
+  randomNumber = getRandomNumber(maxRandomNumber);
 
   const question = randomNumber;
 

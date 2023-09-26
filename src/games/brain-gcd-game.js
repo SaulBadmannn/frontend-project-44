@@ -1,21 +1,24 @@
-import launchGame from '../game-engine.js';
+import launchGame, { getRandomNumber } from '../game-engine.js';
+
+const getLessNumber = (number1, number2) => {
+  if (number1 > number2) {
+    return number2;
+  }
+
+  return number1;
+};
 
 const generateRound = () => {
   let randomNumber1 = 0;
   let randomNumber2 = 0;
   const maxRandomNumber = 20;
-  let lessRandomNumber;
   let currentDivisor;
   let greatestCommonDivisor;
 
-  randomNumber1 = Math.floor(Math.random() * maxRandomNumber + 1);
-  randomNumber2 = Math.floor(Math.random() * maxRandomNumber + 1);
+  randomNumber1 = getRandomNumber(maxRandomNumber);
+  randomNumber2 = getRandomNumber(maxRandomNumber);
 
-  if (randomNumber1 > randomNumber2) {
-    lessRandomNumber = randomNumber2;
-  } else {
-    lessRandomNumber = randomNumber1;
-  }
+  const lessRandomNumber = getLessNumber(randomNumber1, randomNumber2);
 
   currentDivisor = lessRandomNumber;
   greatestCommonDivisor = 1;
