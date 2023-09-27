@@ -26,8 +26,9 @@ const generateRound = () => {
   return [question, answer];
 };
 
-const description = 'What number is missing in the progression?';
-
-export const launchBrainProgressionGame = launchGame(generateRound, description);
+export const launchBrainProgressionGame = () => {
+  const description = 'What number is missing in the progression?';
+  launchGame(generateRound, description);
+};
 
 export default launchBrainProgressionGame;

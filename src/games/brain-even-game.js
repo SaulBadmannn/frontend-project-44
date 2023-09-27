@@ -19,8 +19,9 @@ const generateRound = () => {
   return [question, answer];
 };
 
-const description = 'Answer "yes" if the number is even, otherwise answer "no".';
-
-export const launchBrainEvenGame = launchGame(generateRound, description);
+export const launchBrainEvenGame = () => {
+  const description = 'Answer "yes" if the number is even, otherwise answer "no".';
+  launchGame(generateRound, description);
+};
 
 export default launchBrainEvenGame;

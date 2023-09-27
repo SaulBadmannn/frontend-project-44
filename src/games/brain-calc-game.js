@@ -28,8 +28,9 @@ const generateRound = () => {
   return [question, answer];
 };
 
-const description = 'What is the result of the expression?';
-
-const launchBrainCalcGame = launchGame(generateRound, description);
+const launchBrainCalcGame = () => {
+  const description = 'What is the result of the expression?';
+  launchGame(generateRound, description);
+};
 
 export default launchBrainCalcGame;

@@ -21,8 +21,9 @@ const generateRound = () => {
   return [question, answer];
 };
 
-const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-
-const launchBrainPrimeGame = launchGame(generateRound, description);
+const launchBrainPrimeGame = () => {
+  const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  launchGame(generateRound, description);
+};
 
 export default launchBrainPrimeGame;
