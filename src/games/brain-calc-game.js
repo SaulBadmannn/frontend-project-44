@@ -1,6 +1,6 @@
 import launchGame, { getRandomNumber } from '../game-engine.js';
 
-const getAnswer = (number1, number2, symbolOperator) => {
+const getResultExpression = (number1, number2, symbolOperator) => {
   switch (symbolOperator) {
     case '+':
       return number1 + number2;
@@ -23,7 +23,7 @@ const generateRound = () => {
   const randomOperator = symbolsOperator[getRandomNumber(symbolsOperator.length, 0)];
 
   const question = `${randomNumber1} ${randomOperator} ${randomNumber2}`;
-  const answer = String(getAnswer(randomNumber1, randomNumber2, randomOperator));
+  const answer = String(getResultExpression(randomNumber1, randomNumber2, randomOperator));
 
   return [question, answer];
 };

@@ -1,13 +1,13 @@
 import launchGame, { getRandomNumber } from '../game-engine.js';
 
-const getAnswer = (number) => {
-  const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19];
-
-  if (primeNumbers.includes(number)) {
-    return 'yes';
+const isNumberPrime = (number) => {
+  for (let i = 2; i < number; i += 1) {
+    if (number % i === 0) {
+      return false;
+    }
   }
 
-  return 'no';
+  return true;
 };
 
 const generateRound = () => {
@@ -15,7 +15,14 @@ const generateRound = () => {
 
   const randomNumber = getRandomNumber(maxRandomNumber);
 
-  const answer = getAnswer(randomNumber);
+  let answer;
+
+  if (isNumberPrime(randomNumber)) {
+    answer = 'yes';
+  } else {
+    answer = 'no';
+  }
+
   const question = randomNumber;
 
   return [question, answer];

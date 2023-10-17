@@ -1,11 +1,11 @@
 import launchGame, { getRandomNumber } from '../game-engine.js';
 
-const getAnswer = (number) => {
+const isEven = (number) => {
   if (number % 2 === 0) {
-    return 'yes';
+    return true;
   }
 
-  return 'no';
+  return false;
 };
 
 const generateRound = () => {
@@ -14,7 +14,13 @@ const generateRound = () => {
   const randomNumber = getRandomNumber(maxRandomNumber);
   const question = randomNumber;
 
-  const answer = getAnswer(randomNumber);
+  let answer;
+
+  if (isEven(randomNumber)) {
+    answer = 'yes';
+  } else {
+    answer = 'no';
+  }
 
   return [question, answer];
 };

@@ -1,27 +1,28 @@
 import launchGame, { getRandomNumber } from '../game-engine.js';
 
-const generateRound = () => {
-  const maxRandomNumber = 5;
-  const amountNumbersProgression = 10;
-  let outputProgression = '';
-  let answer;
-
+const createProgression = (amountNumbersProgression, maxRandomNumber) => {
   const stepProgression = getRandomNumber(maxRandomNumber);
-  const indexHiddenNumber = getRandomNumber(amountNumbersProgression, 0);
   let currentNumberProgression = getRandomNumber(maxRandomNumber);
+  const numbersProgression = [];
 
   for (let j = 0; j < amountNumbersProgression; j += 1) {
-    if (indexHiddenNumber === j) {
-      outputProgression += '.. ';
-      answer = String(currentNumberProgression);
-    } else {
-      outputProgression += `${currentNumberProgression} `;
-    }
-
+    numbersProgression.push(currentNumberProgression);
     currentNumberProgression += stepProgression;
   }
 
-  const question = `${outputProgression}`;
+  return numbersProgression;
+};
+
+const generateRound = () => {
+  const maxRandomNumber = 5;
+  const amountNumbersProgression = 10;
+  const numbersProgression = createProgression(amountNumbersProgression, maxRandomNumber);
+  const indexHiddenNumber = getRandomNumber(amountNumbersProgression, 0);
+
+  const answer = String(numbersProgression[indexHiddenNumber]);
+  numbersProgression[indexHiddenNumber] = '..';
+
+  const question = numbersProgression.join(' ');
 
   return [question, answer];
 };
