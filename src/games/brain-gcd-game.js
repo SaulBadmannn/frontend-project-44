@@ -8,7 +8,7 @@ const getLessNumber = (number1, number2) => {
   return number1;
 };
 
-const getAnswer = (lessNumber, number1, number2) => {
+const getGreatestCommonDivisor = (lessNumber, number1, number2) => {
   let currentDivisor;
   let greatestCommonDivisor;
 
@@ -35,7 +35,7 @@ const generateRound = () => {
 
   const lessRandomNumber = getLessNumber(randomNumber1, randomNumber2);
 
-  const answer = String(getAnswer(lessRandomNumber, randomNumber1, randomNumber2));
+  const answer = String(getGreatestCommonDivisor(lessRandomNumber, randomNumber1, randomNumber2));
   const question = `${randomNumber1} ${randomNumber2}`;
 
   return [question, answer];
